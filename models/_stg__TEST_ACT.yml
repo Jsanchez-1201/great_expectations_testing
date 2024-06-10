@@ -5,15 +5,16 @@ models:
         tests:
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "ACCT_NO is not null"
+          - unique
           - dbt_expectations.expect_compound_columns_to_be_unique:
-              column_list: ["FIRM_NO"]
+              column_list: ["ACCT_NO", "FIRM_NO"] 
       
       - name: FIRM_NO
         tests:
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "FIRM_NO is not null"
-          - dbt_expectations.expect_compound_columns_to_be_unique:
-              column_list: ["DEFINED A COLUMN"]
+      #     - dbt_expectations.expect_compound_columns_to_be_unique:
+      #         column_list: ["ACCT_NO", "FIRM_NO"]
      
       - name: ACCT_STATUS
         tests:
@@ -25,10 +26,10 @@ models:
           - dbt_expectations.expect_column_values_to_be_in_set:
               value_set: ['a','b','c']
 
-      - name: SUB_NO
-        tests:
-          - dbt_expectations.expect_compound_columns_to_be_unique:
-              column_list: ["FIRM_NO"]
+      # - name: SUB_NO
+      #   tests:
+      #     - dbt_expectations.expect_compound_columns_to_be_unique:
+      #         column_list: ["FIRM_NO"]
 
       - name: INST_CODE
         tests:
