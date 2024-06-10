@@ -1,3 +1,5 @@
+version: 2
+
 models:
   - name: first_layer_ACT
     columns:
@@ -6,71 +8,73 @@ models:
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "ACCT_NO is not null"
           - unique
-          - dbt_expectations.expect_compound_columns_to_be_unique:
-              column_list: ["ACCT_NO", "FIRM_NO"] 
+          # - dbt_expectations.expect_compound_columns_to_be_unique:
+          #     column_list: ["ACCT_NO", "FIRM_NO"]
       
       - name: FIRM_NO
         tests:
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "FIRM_NO is not null"
-      #     - dbt_expectations.expect_compound_columns_to_be_unique:
-      #         column_list: ["ACCT_NO", "FIRM_NO"]
+          - unique
+          # - dbt_expectations.expect_compound_columns_to_be_unique:
+          #     column_list: ["ACCT_NO", "FIRM_NO"]
      
       - name: ACCT_STATUS
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['A', 'B', 'BLANK', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 
       - name: ACCT_TYPE_IND
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['Blank', 'C', 'M']
 
-      # - name: SUB_NO
-      #   tests:
-      #     - dbt_expectations.expect_compound_columns_to_be_unique:
-      #         column_list: ["FIRM_NO"]
+      - name: SUB_NO
+        tests:
+          - unique
+          # - dbt_expectations.expect_compound_columns_to_be_unique:
+          #     column_list: ["FIRM_NO"]
 
       - name: INST_CODE
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '5', '9']
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "INST_CODE is not null"
 
       - name: INST_OVERRIDE_SW
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['C', 'F', 'N', 'O', 'P', 'S', 'T', 'X', '9']
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "INST_OVERRIDE_SW is not null"
 
       - name: PRIME_BROKER_CODE
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['BLANK', 'E', 'I', 'P']
 
       - name: CASH_SI1
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['1','2','3', '4', '5', '6', '7', '8', '9']
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "CASH_SI1 is not null"
 
       - name: CASH_SI2
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['A', 'B', 'C', 'J', 'S']
           - dbt_expectations.expect_column_values_to_not_be_null:
               row_condition: "CASH_SI2 is not null"
 
       - name: DIRECTOR_SW
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['Blank','x']
 
       - name: NON_CUSTOMER_SW
         tests:
           - dbt_expectations.expect_column_values_to_be_in_set:
-              value_set: ['a','b','c']
+              value_set: ['Blank','P','X']
 
