@@ -3,9 +3,9 @@ version: 2
 models:
   - name: first_layer_ACT
     tests:
-      - dbt_expectations.expect_compound_columns_to_be_unique:
+      - expect_compound_columns_to_be_unique:
           column_list: ["ACCT_NO", "FIRM_NO"]
-      - dbt_expectations.expect_compound_columns_to_be_unique:
+      - expect_compound_columns_to_be_unique:
               column_list: ["SUB_NO", "FIRM_NO"]
 
     columns:
